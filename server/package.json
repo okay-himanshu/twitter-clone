@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Backend of twitter clone project",
   "main": "index.js",
-  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon index.js"
+  },
   "keywords": [
     "twitter",
     "x"
@@ -13,6 +15,7 @@
   "dependencies": {
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "mongoose": "^8.0.0"
+    "mongoose": "^8.0.0",
+    "nodemon": "^3.0.1"
   }
 }
