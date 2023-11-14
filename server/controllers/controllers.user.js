@@ -1,10 +1,9 @@
 const jwt = require("jsonwebtoken");
-
 const userModel = require("../models/modules.user");
-const { hash } = require("../helper/helper.bcrypt");
+const { hash, compare } = require("../helper/helper.bcrypt");
 const { env_config } = require("../config/config.env");
 
-const handleRegisterUser = async (req, res) => {
+const handleUserSingUp = async (req, res) => {
   try {
     const {
       name,
@@ -49,13 +48,13 @@ const handleRegisterUser = async (req, res) => {
             }
           );
 
-          res.status(201).send({
+          return res.status(201).send({
             success: true,
             message: "user signup successfully",
             token,
           });
         } else {
-          res.status(200).send({
+          return res.status(200).send({
             success: false,
             message: "password and confirm password doesn't matched",
           });
@@ -76,13 +75,13 @@ const handleRegisterUser = async (req, res) => {
             break;
         }
 
-        res.status(400).send({
+        return res.status(400).send({
           success: false,
           message,
         });
       }
     } else {
-      res.status(201).send({
+      return res.status(400).send({
         success: false,
         message: "all field is required",
       });
@@ -96,4 +95,54 @@ const handleRegisterUser = async (req, res) => {
   }
 };
 
-module.exports = { handleRegisterUser };
+const handleUserLogin = async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+
+    if ((email || username) && password) {
+      const user = await userModel.findOne({ $or: [{ email }, { username }] });
+
+      if (user) {
+        const isMatch = await compare(password, user?.password);
+
+        console.log(isMatch);
+
+        if (isMatch) {
+          const token = jwt.sign(
+            { userId: user._id },
+            env_config.JWT_SECRET_KEY,
+            { expiresIn: "5d" }
+          );
+
+          return res.status(200).send({
+            success: true,
+            message: "Login successfully",
+            token,
+          });
+        } else {
+          return res.status(401).send({
+            success: false,
+            message: "email or password doesn't matched",
+          });
+        }
+      } else {
+        return res.status(404).send({
+          success: false,
+          message: "User not found, please signup",
+        });
+      }
+    } else {
+      return res.status(400).send({
+        success: false,
+        message: "All field is required",
+      });
+    }
+  } catch (err) {
+    return res.status(400).send({
+      success: false,
+      message: "error while user login ",
+    });
+  }
+};
+
+module.exports = { handleUserSingUp, handleUserLogin };
