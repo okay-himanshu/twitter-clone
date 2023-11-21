@@ -1,7 +1,12 @@
+import { Home } from "./pages";
+import Router from "./routers/router";
+
 function App() {
   return (
     <>
-      <h1 className="text-red-500 text-4xl">Hello world</h1>
+      <Router>
+        <Home />
+      </Router>
     </>
   );
 }
