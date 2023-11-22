@@ -1,5 +1,6 @@
 import { FaXTwitter, FaApple } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
+import { NavLink } from "react-router-dom";
 
 function Signup_Login() {
   return (
@@ -26,9 +27,12 @@ function Signup_Login() {
 
         <div className="h-5"></div>
 
-        <div className="mt-1 mb-2 bg-[#1d9bf0] text-white py-2.5   rounded-full  font-medium flex justify-center  items-center gap-2  xs:w-80">
-          <button>Create account</button>
-        </div>
+        <NavLink
+          to={"/signup"}
+          className="mt-1 mb-2 bg-[#1d9bf0] text-white py-2.5   rounded-full  font-medium flex justify-center  items-center gap-2  xs:w-80"
+        >
+          Create account
+        </NavLink>
 
         <div className="text-xs font-light w-80">
           By signing up, you agree to the{" "}
@@ -41,9 +45,12 @@ function Signup_Login() {
           <h2>Already have an account?</h2>
         </div>
 
-        <div className="mt-5 mb-2 bg-black text-[#1d9bf0] border hover:bg-[#3b3b4238] transition-all duration-150 border-[#1d9bf0] py-2.5   rounded-full  font-medium flex justify-center  items-center gap-2  xs:w-80">
-          <button>Sign in</button>
-        </div>
+        <NavLink
+          to="/login"
+          className="mt-5 mb-2 bg-black text-[#1d9bf0] border hover:bg-[#3b3b4238] transition-all duration-150 border-[#1d9bf0] py-2.5   rounded-full  font-medium flex justify-center  items-center gap-2  xs:w-80"
+        >
+          Sign in
+        </NavLink>
       </div>
     </div>
   );
