@@ -3,6 +3,7 @@ const {
   handleUserSingUp,
   handleUserLogin,
 } = require("../controllers/controllers.user");
+const userAuthentication = require("../middlewares/middlewares.auth");
 
 const router = app.Router();
 
