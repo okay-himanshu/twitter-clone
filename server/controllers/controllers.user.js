@@ -105,8 +105,6 @@ const handleUserLogin = async (req, res) => {
       if (user) {
         const isMatch = await compare(password, user?.password);
 
-        console.log(isMatch);
-
         if (isMatch) {
           const token = jwt.sign(
             { userId: user._id },
