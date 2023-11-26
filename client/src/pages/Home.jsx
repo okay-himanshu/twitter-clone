@@ -9,6 +9,7 @@ import {
 import { GoHomeFill } from "react-icons/go";
 import {
   twitter_message,
+  twitter_newTweet,
   twitter_notification,
   twitter_search,
 } from "../assets/svgs";
@@ -53,8 +54,8 @@ function Home() {
         <BottomMenu img={twitter_message} />
       </section>
 
-      <section>
-        <TweetButton img={""} />
+      <section className="absolute right-5 bottom-16 ">
+        <TweetButton img={twitter_newTweet} />
       </section>
     </>
   );

@@ -49,7 +49,7 @@ function TweetCard() {
           </div>
           <div className="ml-5">
             <p className="text-[#cfd0d1]">
-              serious question: what can you learn from udemy that you can't
+              Serious question: what can you learn from udemy that you can't
               learn from youtube?{" "}
             </p>
           </div>
