@@ -15,7 +15,7 @@ import {
 function TweetCard() {
   return (
     <>
-      <div className="overflow-x-auto flex items-start justify-between px-3 py-3">
+      <div className="border border-t-0 border-r-0 border-l-0 border-gray-500 overflow-x-auto flex items-start justify-between px-3 py-3">
         <div className="w-28">
           <img
             src={user_img}
@@ -75,7 +75,6 @@ function TweetCard() {
         </div>
         {/* <div>***</div> */}
       </div>
-      <hr />
     </>
   );
 }

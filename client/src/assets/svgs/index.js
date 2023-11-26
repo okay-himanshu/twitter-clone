@@ -6,6 +6,10 @@ import twitter_notification from "./twitter-alert.svg";
 import twitter_message from "./twitter-message.svg";
 import twitter_search from "./twitter-search.svg";
 import twitter_newTweet from "./twitter-newtweet.svg";
+import twitter_image from "./twitter-image.svg";
+import twitter_gif from "./twitter-gif.svg";
+import twitter_align from "./twitter-align.svg";
+import twitter_location from "./twitter-location.svg";
 
 export {
   twitter_reply,
@@ -16,4 +20,8 @@ export {
   twitter_message,
   twitter_search,
   twitter_newTweet,
+  twitter_image,
+  twitter_gif,
+  twitter_align,
+  twitter_location,
 };

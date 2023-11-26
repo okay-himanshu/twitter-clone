@@ -5,5 +5,17 @@ import TopNavbar from "./TopNavbar";
 import TweetCard from "./TweetCard";
 import BottomMenu from "./BottomMenu";
 import TweetButton from "./TweetButton";
+import TweetArea from "./TweetArea";
+import NavTweets from "./NavTweets";
 
-export { Input, Menu, UserImg, TopNavbar, TweetCard, BottomMenu, TweetButton };
+export {
+  Input,
+  Menu,
+  UserImg,
+  TopNavbar,
+  TweetCard,
+  BottomMenu,
+  TweetButton,
+  TweetArea,
+  NavTweets,
+};
