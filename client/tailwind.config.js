@@ -11,6 +11,9 @@ export default {
         xl: "1280px",
         "2xl": "1536px",
       },
+      fontFamily: {
+        chirp: ["TwitterChirp", "sans-serif"],
+      },
     },
   },
   plugins: [],

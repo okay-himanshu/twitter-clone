@@ -5,4 +5,19 @@
 :root {
   background-color: #000;
   color: #e7e9ea;
+  @font-face {
+    font-family: "TwitterChirp";
+    src: url("./fonts/Chirp-Medium.f8e2739a.woff2");
+  }
+}
+
+@font-face {
+  font-family: "TwitterChirp";
+  src: url("./fonts/Chirp-Medium.f8e2739a.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "TwitterChirp", sans-serif;
 }
