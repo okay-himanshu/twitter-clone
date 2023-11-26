@@ -1,5 +1,17 @@
 import { NavLink } from "react-router-dom";
-import { Menu, TopNavbar, TweetCard } from "../components";
+import {
+  BottomMenu,
+  Menu,
+  TopNavbar,
+  TweetButton,
+  TweetCard,
+} from "../components";
+import { GoHomeFill } from "react-icons/go";
+import {
+  twitter_message,
+  twitter_notification,
+  twitter_search,
+} from "../assets/svgs";
 
 function Home() {
   return (
@@ -33,6 +45,16 @@ function Home() {
         <hr className="" />
 
         <TweetCard />
+      </section>
+      <section className="flex items-center justify-around absolute bottom-0 w-full border-t border-gray-600 p-4">
+        <BottomMenu icon={<GoHomeFill size={22} />} />
+        <BottomMenu img={twitter_search} />
+        <BottomMenu img={twitter_notification} />
+        <BottomMenu img={twitter_message} />
+      </section>
+
+      <section>
+        <TweetButton img={""} />
       </section>
     </>
   );
