@@ -1,7 +1,9 @@
-function TweetButton({ img }) {
+function TweetButton({ img, title, className }) {
   return (
-    <button className="bg-[#1d9bf0] p-1  rounded-full">
-      <img src={img} alt="" className=" p-3 text-white" />
+    <button className="bg-[#1d9bf0]  rounded-full xl:w-full text-center">
+      <img src={img} alt="" className={`${className} xl:hidden text-white`} />
+
+      <p className="hidden xl:flex p-3 flex justify-center ">{title}</p>
     </button>
   );
 }

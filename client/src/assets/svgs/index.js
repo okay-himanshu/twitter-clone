@@ -10,6 +10,8 @@ import twitter_image from "./twitter-image.svg";
 import twitter_gif from "./twitter-gif.svg";
 import twitter_align from "./twitter-align.svg";
 import twitter_location from "./twitter-location.svg";
+import twitter_lists from "./twitter-lists.svg";
+import twitter_profile from "./twitter-profile.svg";
 
 export {
   twitter_reply,
@@ -24,4 +26,6 @@ export {
   twitter_gif,
   twitter_align,
   twitter_location,
+  twitter_lists,
+  twitter_profile,
 };

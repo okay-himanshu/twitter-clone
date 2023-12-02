@@ -7,6 +7,7 @@ import BottomMenu from "./BottomMenu";
 import TweetButton from "./TweetButton";
 import TweetArea from "./TweetArea";
 import NavTweets from "./NavTweets";
+import SideMenu from "./SideMenu";
 
 export {
   Input,
@@ -18,4 +19,5 @@ export {
   TweetButton,
   TweetArea,
   NavTweets,
+  SideMenu,
 };
