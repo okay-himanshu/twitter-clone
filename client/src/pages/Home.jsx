@@ -67,9 +67,7 @@ function Home() {
             <NavTweets />
           </section>
 
-          <hr className="" />
-
-          <section className="border border-gray-500 border-t-0 hidden w-500:flex">
+          <section className="border-[0.1px]    border-gray-800 hidden w-500:flex">
             <TweetArea />
           </section>
 

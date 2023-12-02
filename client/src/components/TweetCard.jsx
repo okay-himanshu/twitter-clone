@@ -14,7 +14,7 @@ import {
 function TweetCard() {
   return (
     <>
-      <div className=" border-[0.1px] border-gray-800 overflow-x-auto flex justify-around  px-3 py-3">
+      <div className=" border-[0.1px] border-t-0 border-gray-800 overflow-x-auto flex justify-around  px-3 py-3">
         <div className="w-20  sm:w-10">
           <img
             src={user_img}
