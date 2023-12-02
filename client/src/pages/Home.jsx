@@ -28,7 +28,7 @@ import { user_img } from "../assets/images";
 
 function Home() {
   return (
-    <div>
+    <>
       <section className="flex ">
         <div className="w-0 w-500:w-28 xl:w-72  ">
           <section className="fixed overflow-y-auto overflow-x-hidden h-screen hidden w-500:flex flex-col gap-1  items-center xl:items-start p-3 w-28 xl:p-7 xl:w-72">
@@ -58,7 +58,7 @@ function Home() {
             <BottomMenu img={twitter_message} />
           </section>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-[42rem]">
           <section className="w-500:hidden">
             <TopNavbar />
           </section>
@@ -73,7 +73,7 @@ function Home() {
             <TweetArea />
           </section>
 
-          <section>
+          <section className="">
             <TweetCard />
             <TweetCard />
             <TweetCard />
@@ -91,7 +91,7 @@ function Home() {
           <TweetButton img={twitter_newTweet} className={"p-3"} />
         </section>
       </section>
-    </div>
+    </>
   );
 }
 

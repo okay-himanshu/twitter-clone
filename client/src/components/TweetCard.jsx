@@ -10,17 +10,16 @@ import {
   twitter_reply,
   twitter_retweet,
 } from "../assets/svgs/index";
-// import comment from "../assets/svgs/comment.svg";
 
 function TweetCard() {
   return (
     <>
-      <div className="border border-t-0 border-r-0 border-l-0 border-gray-500 overflow-x-auto flex items-start justify-between px-3 py-3">
-        <div className="w-28">
+      <div className=" border-[0.1px] border-gray-800 overflow-x-auto flex justify-around  px-3 py-3">
+        <div className="w-20  sm:w-10">
           <img
             src={user_img}
             alt=""
-            className="h-10 w-10 object-contain  rounded-full"
+            className="w-10  object-cover  rounded-full"
           />
         </div>
         <div>
@@ -54,21 +53,21 @@ function TweetCard() {
             </p>
           </div>
           <div className="flex items-center gap-3 xs:gap-10 xs:justify-between ml-5 mt-3 text-sm text-gray-400">
-            <section className="flex gap-1.5">
+            <section className="flex gap-1.5  cursor-pointer">
               <img src={twitter_reply} alt="" />
               <p>167</p>
             </section>
-            <section className="flex gap-1.5">
+            <section className="flex gap-1.5 cursor-pointer">
               <img src={twitter_retweet} alt="" />
               <p>14</p>
             </section>
-            <section className="flex gap-1.5">
+            <section className="flex gap-1.5 cursor-pointer">
               <img src={twitter_like} alt="" />
               <p>253</p>
             </section>
-            <section className="flex gap-1.5">
+            <section className="flex gap-1.5 cursor-wait">
               <img src={twitter_analytics} alt="" />
-              <p>14k</p>
+              <p>0</p>
             </section>
             <p>{<FaRegBookmark color="gray" />}</p>
           </div>

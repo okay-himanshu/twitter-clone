@@ -10,14 +10,14 @@ import {
 function TweetArea() {
   return (
     <>
-      <section className="flex   ">
+      <section className="flex   w-full">
         <div className="w-1/12 mt-3">
           <UserImg img={user_img} />
         </div>
         <div className="w-[90%] mt-3">
           <textarea
             placeholder="What is happening?!"
-            className="w-full h-32 bg-black outline-none resize-none  font-light text-lg "
+            className="w-full h-16 bg-black outline-none resize-none  font-light text-lg "
           ></textarea>
           <hr />
           <div className="flex items-center justify-between mt-4 mb-4">
