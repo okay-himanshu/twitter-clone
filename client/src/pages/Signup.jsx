@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import { Input } from "../components";
-import { useAuth } from "../contexts/Auth";
+import URL_CONFIG from "../config/url_config";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -14,14 +14,13 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [API_ENDPOINTS] = useAuth();
   const navigate = useNavigate();
 
   // signup
 
   const handleUserSignup = async () => {
     try {
-      const res = await axios.post(`${API_ENDPOINTS}/user/signup`, {
+      const res = await axios.post(`${URL_CONFIG.API_ENDPOINTS}/user/signup`, {
         name,
         username,
         email,
@@ -39,6 +38,11 @@ function Signup() {
       console.log(err.message);
     }
   };
+
+  useEffect(() => {
+    const auth = localStorage.getItem("auth");
+    if (auth) navigate("/");
+  });
 
   return (
     <>

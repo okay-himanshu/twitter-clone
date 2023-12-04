@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Input } from "../components";
 import URL_CONFIG from "../config/url_config";
+import { useAuth } from "../contexts/auth";
 
 function Login() {
   const [email, setEmail] = useState();
@@ -13,6 +14,7 @@ function Login() {
 
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
+  const [auth, setAuth] = useAuth();
 
   const toggleUserNameOrEmail = () => {
     setToggle(!toggle);
@@ -24,16 +26,28 @@ function Login() {
   const handleUserLogin = async () => {
     try {
       const data = toggle ? { username, password } : { email, password };
-      console.log(data);
       const res = await axios.post(
         `${URL_CONFIG.API_ENDPOINTS}/user/login`,
         data
       );
-      if (res.data.success) return navigate("/");
+      if (res.data.success) {
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        navigate("/");
+      }
     } catch (err) {
       console.log(err.message);
     }
   };
+
+  useEffect(() => {
+    const auth = localStorage.getItem("auth");
+    if (auth) navigate("/");
+  }, []);
 
   return (
     <>

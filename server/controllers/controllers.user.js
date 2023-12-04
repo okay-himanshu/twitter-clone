@@ -48,10 +48,17 @@ const handleUserSingUp = async (req, res) => {
             }
           );
 
+          console.log("backend ", user);
+
           return res.status(201).send({
             success: true,
             message: "user signup successfully",
             token,
+            user: {
+              username,
+              name,
+              email,
+            },
           });
         } else {
           return res.status(200).send({
@@ -116,6 +123,10 @@ const handleUserLogin = async (req, res) => {
             success: true,
             message: "Login successfully",
             token,
+            user: {
+              username,
+              email,
+            },
           });
         } else {
           return res.status(401).send({

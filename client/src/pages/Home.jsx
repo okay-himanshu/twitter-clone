@@ -31,7 +31,7 @@ function Home() {
     <>
       <section className="flex ">
         <div className="w-0 w-500:w-28 xl:w-72  ">
-          <section className="fixed overflow-y-auto overflow-x-hidden h-screen hidden w-500:flex flex-col gap-1  items-center xl:items-start p-3 w-28 xl:p-7 xl:w-72">
+          <section className="fixed overflow-y-scroll overflow-x-hidden h-screen hidden w-500:flex flex-col gap-1  items-center xl:items-start p-3 w-20 xl:p-7 xl:w-72">
             <SideMenu icon={<FaXTwitter />} />
             <SideMenu icon={<GoHomeFill />} title="Home" />
             <SideMenu icon={<FiSearch />} title="Explore" />
@@ -58,7 +58,7 @@ function Home() {
             <BottomMenu img={twitter_message} />
           </section>
         </div>
-        <div className="flex flex-col w-[42rem]">
+        <div className="flex flex-col  w-[42rem]">
           <section className="w-500:hidden">
             <TopNavbar />
           </section>
