@@ -2,8 +2,7 @@ const app = require("express");
 const {
   handleUserSingUp,
   handleUserLogin,
-} = require("../controllers/controllers.user");
-const userAuthentication = require("../middlewares/middlewares.auth");
+} = require("../controllers/controller.user");
 
 const router = app.Router();
 
