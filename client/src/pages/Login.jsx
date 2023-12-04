@@ -14,7 +14,7 @@ function Login() {
 
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
-  const [auth, setAuth] = useAuth();
+  const { auth, setAuth } = useAuth();
 
   const toggleUserNameOrEmail = () => {
     setToggle(!toggle);

@@ -16,7 +16,7 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const navigate = useNavigate();
-  const [auth, setAuth] = useAuth();
+  const { auth, setAuth } = useAuth();
   // signup
 
   const handleUserSignup = async () => {
@@ -37,7 +37,7 @@ function Signup() {
           token: res.data.token,
         });
 
-        localStorage.setItem("auth", JSON.stringify(res.data.user));
+        localStorage.setItem("auth", JSON.stringify(res.data));
         navigate("/for-you");
       } else {
         console.log(res.message);

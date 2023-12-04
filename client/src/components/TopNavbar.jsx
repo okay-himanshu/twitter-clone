@@ -5,7 +5,7 @@ import UserImg from "./UserImg";
 import { useAuth } from "../contexts/auth";
 
 function TopNavbar() {
-  const [auth] = useAuth();
+  const { auth } = useAuth();
   return (
     <div className="flex items-center justify-between mx-5 my-2">
       <section>

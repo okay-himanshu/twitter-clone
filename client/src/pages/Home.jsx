@@ -33,7 +33,7 @@ import {
 import { useAuth } from "../contexts/auth";
 
 function Home() {
-  const [auth] = useAuth();
+  const { auth } = useAuth();
   const navigate = useNavigate();
 
   console.log(auth);

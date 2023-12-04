@@ -1,5 +1,6 @@
+import { useNavigate } from "react-router-dom";
+
 import { UserImg } from ".";
-import { user_img } from "../assets/images";
 import {
   twitter_align,
   twitter_gif,
@@ -8,9 +9,16 @@ import {
 } from "../assets/svgs";
 
 import { useAuth } from "../contexts/auth";
+import { useGlobal } from "../contexts/context.global";
+import { useEffect } from "react";
 
 function TweetArea() {
-  const [auth] = useAuth();
+  const { auth } = useAuth();
+  const { handleTweetPost, newTweet, setNewTweet, login } = useGlobal();
+  const navigate = useNavigate();
+
+  const handleNavigate = () => navigate("/signup_login");
+
   return (
     <>
       <section className="flex w-full ml-4">
@@ -21,6 +29,8 @@ function TweetArea() {
         </div>
         <div className="w-[90%] mt-3">
           <textarea
+            onChange={(event) => setNewTweet(event.target.value)}
+            value={newTweet}
             placeholder="What is happening?!"
             className="border border-r-0 border-l-0 border-t-0 border-gray-800  w-full h-16 bg-black outline-none resize-none  font-light text-lg "
           ></textarea>
@@ -41,8 +51,11 @@ function TweetArea() {
               </div>
             </div>
             <div>
-              <button className="bg-[#1D9BF0] px-6 py-2 text-white rounded-full">
-                Post
+              <button
+                className="bg-[#1D9BF0] px-6 py-2 text-white rounded-full"
+                onClick={login ? handleTweetPost : handleNavigate}
+              >
+                {login ? "Post" : "Login to post"}
               </button>
             </div>
           </div>
