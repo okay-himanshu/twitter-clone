@@ -9,6 +9,7 @@ import { FiSearch } from "react-icons/fi";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { BsPerson } from "react-icons/bs";
 import { IoMdLogIn } from "react-icons/io";
+import { BsThreeDots } from "react-icons/bs";
 
 import { useNavigate } from "react-router-dom";
 
@@ -34,11 +35,13 @@ import { useAuth } from "../contexts/auth";
 function Home() {
   const [auth] = useAuth();
   const navigate = useNavigate();
+
+  console.log(auth);
   return (
     <>
       <section className="flex ">
         <div className="w-0 w-500:w-28 xl:w-72  ">
-          <section className="fixed overflow-y-scroll overflow-x-hidden h-screen hidden w-500:flex flex-col gap-1  items-center xl:items-start p-3 w-20 xl:p-7 xl:w-72">
+          <section className="fixed overflow-y-auto overflow-x-hidden h-screen hidden w-500:flex flex-col   items-center xl:items-start p-3 w-20 xl:p-5 xl:w-72">
             <SideMenu icon={<FaXTwitter />} />
             <SideMenu icon={<GoHomeFill />} title="Home" />
             <SideMenu icon={<FiSearch />} title="Explore" />
@@ -55,11 +58,22 @@ function Home() {
               title={"Post"}
             />
             <div className="mt-3"></div>
-            <div className="w-full ">
+            <div className="w-full p-2 hover:bg-[#ffffff1a] duration-150 cursor-pointer rounded-full">
               {auth?.user ? (
-                <UserImg
-                  img={`https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${auth?.user?.name}`}
-                />
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <UserImg
+                      img={`https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${auth?.user?.name}`}
+                    />
+                    <div className="text-[15px] hidden xl:flex flex-col">
+                      <h1 className="font-semibold">{auth?.user?.name}</h1>
+                      <h1 className="font-thin">@{auth?.user?.username}</h1>
+                    </div>
+                  </div>
+                  <div className="hidden xl:flex">
+                    <BsThreeDots />
+                  </div>
+                </div>
               ) : (
                 <ReminderButton
                   handleClick={() => navigate("/signup_login")}
@@ -70,7 +84,7 @@ function Home() {
             </div>
           </section>
 
-          <section className="w-500:hidden flex items-center justify-around absolute bottom-0 w-full border-t border-gray-600 p-4">
+          <section className="w-500:hidden flex items-center justify-around fixed bottom-0 w-full border-t bg-black border-gray-600 p-4">
             <BottomMenu icon={<GoHomeFill size={22} />} />
             <BottomMenu img={twitter_search} />
             <BottomMenu img={twitter_notification} />

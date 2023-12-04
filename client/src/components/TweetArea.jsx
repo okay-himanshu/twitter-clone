@@ -7,12 +7,17 @@ import {
   twitter_location,
 } from "../assets/svgs";
 
+import { useAuth } from "../contexts/auth";
+
 function TweetArea() {
+  const [auth] = useAuth();
   return (
     <>
       <section className="flex w-full ml-4">
         <div className="w-1/12 mt-3">
-          <UserImg img={user_img} />
+          <UserImg
+            img={`https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${auth?.user?.name}`}
+          />
         </div>
         <div className="w-[90%] mt-3">
           <textarea
