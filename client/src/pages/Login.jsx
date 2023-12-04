@@ -37,7 +37,7 @@ function Login() {
           token: res.data.token,
         });
         localStorage.setItem("auth", JSON.stringify(res.data));
-        navigate("/");
+        navigate("/for-you");
       }
     } catch (err) {
       console.log(err.message);
@@ -46,7 +46,7 @@ function Login() {
 
   useEffect(() => {
     const auth = localStorage.getItem("auth");
-    if (auth) navigate("/");
+    if (auth) navigate("/for-you");
   }, []);
 
   return (

@@ -1,3 +1,4 @@
+/*ICONS */
 import { FaXTwitter } from "react-icons/fa6";
 import { GoHomeFill } from "react-icons/go";
 import { IoPeopleOutline } from "react-icons/io5";
@@ -7,10 +8,14 @@ import { RiFileListLine } from "react-icons/ri";
 import { FiSearch } from "react-icons/fi";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { BsPerson } from "react-icons/bs";
+import { IoMdLogIn } from "react-icons/io";
+
+import { useNavigate } from "react-router-dom";
 
 import {
   BottomMenu,
   NavTweets,
+  ReminderButton,
   SideMenu,
   TopNavbar,
   TweetArea,
@@ -24,9 +29,11 @@ import {
   twitter_notification,
   twitter_search,
 } from "../assets/svgs";
-import { user_img } from "../assets/images";
+import { useAuth } from "../contexts/auth";
 
 function Home() {
+  const [auth] = useAuth();
+  const navigate = useNavigate();
   return (
     <>
       <section className="flex ">
@@ -48,7 +55,19 @@ function Home() {
               title={"Post"}
             />
             <div className="mt-3"></div>
-            <UserImg img={user_img} />
+            <div className="w-full ">
+              {auth?.user ? (
+                <UserImg
+                  img={`https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${auth?.user?.name}`}
+                />
+              ) : (
+                <ReminderButton
+                  handleClick={() => navigate("/signup_login")}
+                  title={"Login"}
+                  icon={<IoMdLogIn size={20} />}
+                />
+              )}
+            </div>
           </section>
 
           <section className="w-500:hidden flex items-center justify-around absolute bottom-0 w-full border-t border-gray-600 p-4">

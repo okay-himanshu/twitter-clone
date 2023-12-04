@@ -54,11 +54,7 @@ const handleUserSingUp = async (req, res) => {
             success: true,
             message: "user signup successfully",
             token,
-            user: {
-              username,
-              name,
-              email,
-            },
+            user,
           });
         } else {
           return res.status(200).send({
@@ -123,10 +119,7 @@ const handleUserLogin = async (req, res) => {
             success: true,
             message: "Login successfully",
             token,
-            user: {
-              username,
-              email,
-            },
+            user,
           });
         } else {
           return res.status(401).send({

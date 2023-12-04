@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Input } from "../components";
 import URL_CONFIG from "../config/url_config";
+import { useAuth } from "../contexts/auth";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -15,7 +16,7 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const navigate = useNavigate();
-
+  const [auth, setAuth] = useAuth();
   // signup
 
   const handleUserSignup = async () => {
@@ -30,7 +31,14 @@ function Signup() {
       });
 
       if (res.data.success) {
-        navigate("/");
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+
+        localStorage.setItem("auth", JSON.stringify(res.data.user));
+        navigate("/for-you");
       } else {
         console.log(res.message);
       }
@@ -41,7 +49,7 @@ function Signup() {
 
   useEffect(() => {
     const auth = localStorage.getItem("auth");
-    if (auth) navigate("/");
+    if (auth) navigate("/for-you");
   });
 
   return (
