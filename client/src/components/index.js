@@ -9,6 +9,7 @@ import TweetArea from "./TweetArea";
 import NavTweets from "./NavTweets";
 import SideMenu from "./SideMenu";
 import ReminderButton from "./ReminderButton";
+import AllTweetLists from "./AllTweetLists";
 
 export {
   Input,
@@ -22,4 +23,5 @@ export {
   NavTweets,
   SideMenu,
   ReminderButton,
+  AllTweetLists,
 };

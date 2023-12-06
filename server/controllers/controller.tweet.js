@@ -1,4 +1,4 @@
-const tweetModel = require("../models/model.newTweet");
+const tweetModel = require("../models/model.tweet");
 
 const handleNewTweet = async (req, res) => {
   const { tweet } = req.body;

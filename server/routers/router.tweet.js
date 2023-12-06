@@ -1,6 +1,6 @@
 const app = require("express");
 const userAuthentication = require("../middlewares/middleware.auth");
-const { handleNewTweet } = require("../controllers/controller.newTweet");
+const { handleNewTweet } = require("../controllers/controller.tweet");
 
 const router = app.Router();
 
