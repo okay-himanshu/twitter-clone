@@ -10,7 +10,7 @@ function TopNavbar() {
     <div className="flex items-center justify-between mx-5 my-2">
       <section>
         <UserImg
-          img={`https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${auth?.user?.name}`}
+          img={`https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${auth?.user?.username}`}
         />
       </section>
       <section>

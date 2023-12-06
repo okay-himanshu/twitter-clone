@@ -15,7 +15,7 @@ const GlobalProvider = ({ children }) => {
   useEffect(() => {
     const parse = JSON?.parse(localStorage.getItem("auth"));
     setLogin(parse?.success);
-  }, []);
+  }, [auth]);
 
   const handleTweetPost = async () => {
     try {

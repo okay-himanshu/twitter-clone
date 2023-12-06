@@ -63,7 +63,7 @@ function Home() {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <UserImg
-                      img={`https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${auth?.user?.name}`}
+                      img={`https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${auth?.user?.username}`}
                     />
                     <div className="text-[15px] hidden xl:flex flex-col">
                       <h1 className="font-semibold">{auth?.user?.name}</h1>
@@ -96,7 +96,7 @@ function Home() {
             <TopNavbar />
           </section>
 
-          <section>
+          <section className="border-[0.1px] border-b border-t-0 border-r-0 border-l-0 border-gray-800">
             <NavTweets />
           </section>
 
@@ -106,19 +106,10 @@ function Home() {
 
           <section className="">
             <TweetCard />
-            <TweetCard />
-            <TweetCard />
-            <TweetCard />
-            <TweetCard />
-            <TweetCard />
-            <TweetCard />
-            <TweetCard />
-            <TweetCard />
-            <TweetCard />
           </section>
         </div>
 
-        <section className="absolute right-5 bottom-16 w-500:hidden ">
+        <section className="fixed  right-5 bottom-16 w-500:hidden ">
           <TweetButton img={twitter_newTweet} className={"p-3"} />
         </section>
       </section>

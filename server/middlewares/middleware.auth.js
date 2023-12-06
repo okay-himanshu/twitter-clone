@@ -8,12 +8,12 @@ const userAuthentication = async (req, res, next) => {
     if (authorization && authorization.startsWith("Bearer")) {
       const token = authorization.split(" ")[1];
       const { userId } = jwt.verify(token, env_config.JWT_SECRET_KEY);
-      req.user = userId;
+      req.user = { userId };
       next();
     } else {
       res.json({
         status: false,
-        message: " token not found",
+        message: "token not found",
       });
     }
   } catch (err) {
