@@ -11,6 +11,7 @@ import {
 import { useAuth } from "../contexts/auth";
 import { useGlobal } from "../contexts/context.global";
 import { useEffect } from "react";
+import { BsPerson } from "react-icons/bs";
 
 function TweetArea() {
   const { auth } = useAuth();
@@ -23,9 +24,13 @@ function TweetArea() {
     <>
       <section className="flex w-full ml-4">
         <div className="w-1/12 mt-3">
-          <UserImg
-            img={`https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${auth?.user?.name}`}
-          />
+          {auth?.user ? (
+            <UserImg
+              img={`https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${auth?.user?.name}`}
+            />
+          ) : (
+            <BsPerson size={25} />
+          )}
         </div>
         <div className="w-[90%] mt-3">
           <textarea
@@ -52,7 +57,11 @@ function TweetArea() {
             </div>
             <div>
               <button
-                className="bg-[#1D9BF0] px-6 py-2 text-white rounded-full"
+                className={`${
+                  login
+                    ? "bg-[#1D9BF0]  px-6 py-2 text-white rounded-full"
+                    : "bg-[#0f4e78]  px-6 py-2 text-[#a5a3a3] rounded-full"
+                }`}
                 onClick={login ? handleTweetPost : handleNavigate}
               >
                 {login ? "Post" : "Login to post"}
