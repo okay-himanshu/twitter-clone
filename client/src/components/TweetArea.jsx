@@ -10,7 +10,6 @@ import {
 
 import { useAuth } from "../contexts/auth";
 import { useGlobal } from "../contexts/context.global";
-import { useEffect } from "react";
 import { BsPerson } from "react-icons/bs";
 
 function TweetArea() {

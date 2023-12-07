@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 import {
   BottomMenu,
+  MobileViewTweetArea,
   NavTweets,
   ReminderButton,
   SideMenu,
@@ -32,10 +33,14 @@ import {
 } from "../assets/svgs";
 import { useAuth } from "../contexts/auth";
 import UserProfile from "./UserProfile";
+import { useState } from "react";
 
 function Home() {
+  const [tweetModal, setTweetModal] = useState(false);
   const { auth } = useAuth();
   const navigate = useNavigate();
+
+  const handleOpenTweetModal = () => setTweetModal(true);
 
   console.log(auth);
   return (
@@ -111,11 +116,17 @@ function Home() {
         </div>
 
         <section className="fixed  right-5 bottom-16 w-500:hidden ">
-          <TweetButton img={twitter_newTweet} className={"p-3"} />
+          <TweetButton
+            img={twitter_newTweet}
+            className={"p-3"}
+            handleClick={handleOpenTweetModal}
+          />
         </section>
-      </section>
 
-      <UserProfile />
+        <MobileViewTweetArea status={tweetModal} setStatus={setTweetModal} />
+
+        {/* <UserProfile /> */}
+      </section>
     </>
   );
 }
