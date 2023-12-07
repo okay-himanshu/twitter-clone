@@ -15,6 +15,7 @@ import {
   twitter_reply,
   twitter_retweet,
 } from "../assets/svgs/index";
+import UserImg from "./UserImg";
 
 function TweetCard() {
   const [allTweets, setAllTweets] = useState([]);
@@ -39,7 +40,8 @@ function TweetCard() {
     fetchAllTweetLists();
   }, []);
 
-  console.log(allTweets);
+  // console.log(allTweets);
+  console.log(allTweets?.user);
   return (
     <>
       {allTweets?.map((tweet) => (
@@ -49,11 +51,10 @@ function TweetCard() {
         >
           {/* left */}
           <section className="flex  gap:10 w-11/12">
-            <div className="w-14 ">
-              <img
-                src={`https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${allTweets?.user?.username}`}
+            <div className="w-14 flex justify-center">
+              <UserImg
+                img={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${tweet?.user?.username}`}
                 alt=""
-                className="w-10  object-cover  rounded-full"
               />
             </div>
             <div className="flex flex-col justify-between w-full">

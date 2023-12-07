@@ -26,7 +26,7 @@ function TweetArea() {
         <div className="w-1/12 mt-3">
           {auth?.user ? (
             <UserImg
-              img={`https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${auth?.user?.username}`}
+              img={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${auth?.user?.username}`}
             />
           ) : (
             <BsPerson size={25} />

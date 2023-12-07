@@ -31,6 +31,7 @@ import {
   twitter_search,
 } from "../assets/svgs";
 import { useAuth } from "../contexts/auth";
+import UserProfile from "./UserProfile";
 
 function Home() {
   const { auth } = useAuth();
@@ -40,7 +41,7 @@ function Home() {
   return (
     <>
       <section className="flex ">
-        <div className="w-0 w-500:w-28 xl:w-72  ">
+        <div className="w-0 w-500:w-28 w-600:w-24 sm:w-20 md:w-20 lg:w-20 xl:w-72  ">
           <section className="fixed overflow-y-auto overflow-x-hidden h-screen hidden w-500:flex flex-col   items-center xl:items-start p-3 w-20 xl:p-5 xl:w-72">
             <SideMenu icon={<FaXTwitter />} />
             <SideMenu icon={<GoHomeFill />} title="Home" />
@@ -63,7 +64,7 @@ function Home() {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <UserImg
-                      img={`https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${auth?.user?.username}`}
+                      img={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${auth?.user?.username}`}
                     />
                     <div className="text-[15px] hidden xl:flex flex-col">
                       <h1 className="font-semibold">{auth?.user?.name}</h1>
@@ -113,6 +114,8 @@ function Home() {
           <TweetButton img={twitter_newTweet} className={"p-3"} />
         </section>
       </section>
+
+      <UserProfile />
     </>
   );
 }
