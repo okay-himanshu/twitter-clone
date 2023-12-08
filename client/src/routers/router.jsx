@@ -6,6 +6,7 @@ import {
   Login,
   Signup,
   Signup_Login,
+  UserProfile,
 } from "../pages";
 
 function Router() {
@@ -19,6 +20,7 @@ function Router() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup_login" element={<Signup_Login />} />
+        <Route path="/profile" element={<UserProfile />}></Route>
       </Routes>
     </BrowserRouter>
   );

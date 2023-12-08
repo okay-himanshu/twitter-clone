@@ -32,7 +32,6 @@ import {
   twitter_search,
 } from "../assets/svgs";
 import { useAuth } from "../contexts/auth";
-import UserProfile from "./UserProfile";
 import { useState } from "react";
 
 function Home() {
@@ -48,16 +47,36 @@ function Home() {
       <section className="flex ">
         <div className="w-0 w-500:w-28 w-600:w-24 sm:w-20 md:w-20 lg:w-20 xl:w-72  ">
           <section className="fixed overflow-y-auto overflow-x-hidden h-screen hidden w-500:flex flex-col   items-center xl:items-start p-3 w-20 xl:p-5 xl:w-72">
-            <SideMenu icon={<FaXTwitter />} />
-            <SideMenu icon={<GoHomeFill />} title="Home" />
-            <SideMenu icon={<FiSearch />} title="Explore" />
-            <SideMenu icon={<IoNotificationsOutline />} title="Notifications" />
-            <SideMenu icon={<MdOutlineEmail />} title="Messages" />
-            <SideMenu icon={<RiFileListLine />} title="Lists" />
-            <SideMenu icon={<IoPeopleOutline />} title="Communities" />
-            <SideMenu icon={<FaXTwitter />} title="Premium" />
-            <SideMenu icon={<BsPerson />} title="Profile" />
-            <SideMenu icon={<CiCircleMore />} title="More" />
+            <SideMenu icon={<FaXTwitter />} redirectTo={`/`} />
+            <SideMenu icon={<GoHomeFill />} title="Home" redirectTo={`/`} />
+            <SideMenu icon={<FiSearch />} title="Explore" redirectTo={`/`} />
+            <SideMenu
+              icon={<IoNotificationsOutline />}
+              title="Notifications"
+              redirectTo={`/`}
+            />
+            <SideMenu
+              icon={<MdOutlineEmail />}
+              title="Messages"
+              redirectTo={`/`}
+            />
+            <SideMenu
+              icon={<RiFileListLine />}
+              title="Lists"
+              redirectTo={`/`}
+            />
+            <SideMenu
+              icon={<IoPeopleOutline />}
+              title="Communities"
+              redirectTo={`/`}
+            />
+            <SideMenu icon={<FaXTwitter />} title="Premium" redirectTo={`/`} />
+            <SideMenu
+              icon={<BsPerson />}
+              title="Profile"
+              redirectTo={`${auth?.user ? "/profile " : "/signup_login"}`}
+            />
+            <SideMenu icon={<CiCircleMore />} title="More" redirectTo={`/`} />
             <TweetButton
               img={twitter_newTweet}
               className={"p-2 h-10 w-10 text-center "}
