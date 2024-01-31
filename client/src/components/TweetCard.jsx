@@ -50,7 +50,9 @@ function TweetCard() {
   return (
     <>
       {failedToFetch ? (
-        <h1>failed to fetch</h1>
+        <section className="flex items-center justify-center mt-10">
+          <h1>⚠️ Failed To Fetch Tweets</h1>
+        </section>
       ) : loader ? (
         <div className="flex flex-col gap-2 items-center justify-center mt-20">
           <img src={twitter_loader} className="w-10 " alt="loader" />
