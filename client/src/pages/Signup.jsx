@@ -38,7 +38,7 @@ function Signup() {
         });
 
         localStorage.setItem("auth", JSON.stringify(res.data));
-        navigate("/for-you");
+        navigate("/");
       } else {
         console.log(res.message);
       }
@@ -49,7 +49,7 @@ function Signup() {
 
   useEffect(() => {
     const auth = localStorage.getItem("auth");
-    if (auth) navigate("/for-you");
+    if (auth) navigate("/");
   });
 
   return (

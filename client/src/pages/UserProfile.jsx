@@ -90,7 +90,7 @@ function UserProfile() {
       <main className=" w-[42rem] border-[0.1px] border-l-0 border-gray-800">
         {" "}
         <nav className="flex items-center gap-8 p-2">
-          <NavLink to="/for-you">
+          <NavLink to="/">
             <IoMdArrowRoundBack />
           </NavLink>
           <div className="">

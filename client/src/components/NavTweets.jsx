@@ -4,7 +4,7 @@ function NavTweets() {
   return (
     <section className="flex items-center text-center justify-center my-5 ">
       <NavLink
-        to={"/for-you"}
+        to={"/"}
         className={({ isActive }) =>
           isActive
             ? "underline underline-offset-[20px] decoration-[#1D9BF0] decoration-4 font-bold w-full"
