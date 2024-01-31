@@ -1,0 +1,28 @@
+<svg height='100%' viewBox='0 0 32 32' width='100%' 
+    xmlns='http://www.w3.org/2000/svg'>
+    <style>
+        @keyframes circle__svg {
+            0% {
+            transform: rotate(0deg);
+            }
+            100% {
+            transform: rotate(360deg);
+            }
+        }
+
+        .circle__svg-circle {
+            transform-origin: center;
+            animation-name: circle__svg;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            height: 1px;
+        }
+    </style>
+    <g>
+        <circle cx='16' cy='16' fill='none' r='14' stroke-width='4' style='stroke: rgb(29, 161, 242); opacity: 0.2;'></circle>
+    </g>
+    <g class='circle__svg-circle'>
+        <circle cx='16' cy='16' fill='none' r='14' stroke-width='4' style='stroke: rgb(29, 161, 242); stroke-dasharray: 80px; stroke-dashoffset: 60px;'></circle>
+    </g>
+</svg>

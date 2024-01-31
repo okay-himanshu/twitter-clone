@@ -12,6 +12,7 @@ import twitter_align from "./twitter-align.svg";
 import twitter_location from "./twitter-location.svg";
 import twitter_lists from "./twitter-lists.svg";
 import twitter_profile from "./twitter-profile.svg";
+import twitter_loader from "./twitter-loader.svg";
 
 export {
   twitter_reply,
@@ -28,4 +29,5 @@ export {
   twitter_location,
   twitter_lists,
   twitter_profile,
+  twitter_loader,
 };
