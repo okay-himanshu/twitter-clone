@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {
   FollowingTweet,
   ForYouTweet,
@@ -20,7 +20,7 @@ function Router() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup_login" element={<Signup_Login />} />
-        <Route path="/profile" element={<UserProfile />}></Route>
+        <Route path="/profile" element={<UserProfile />} />
       </Routes>
     </BrowserRouter>
   );

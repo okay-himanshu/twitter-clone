@@ -1,8 +1,15 @@
+import { useEffect } from "react";
 import { FaXTwitter, FaApple } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Signup_Login() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const auth = localStorage.getItem("auth");
+    if (auth) navigate("/");
+  });
+
   return (
     <div className="lg:flex lg:items-center lg:justify-center lg:gap-32 p-4 sm:p-20 lg:p-10 pb-10   lg:w-full  xs:p-10  overflow-x-auto xs:overflow-hidden">
       <div>
