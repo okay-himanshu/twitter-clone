@@ -5,6 +5,7 @@ import { LuDot } from "react-icons/lu";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 
 import { useAuth } from "../contexts/auth";
 import URL_CONFIG from "../config/url_config";
@@ -45,6 +46,9 @@ function TweetCard() {
 
   useEffect(() => {
     fetchAllTweetLists();
+    // live time counter
+    const interval = setInterval(fetchAllTweetLists, 60000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -81,12 +85,17 @@ function TweetCard() {
                     @{tweet?.user?.username}{" "}
                   </h1>
                   <h1 className="hidden xs:flex">{<LuDot />}</h1>
-                  <h1 className="hidden xs:flex">0h</h1>
+                  <h1 className="hidden xs:flex">
+                    {" "}
+                    {moment(tweet?.createdAt).fromNow()}
+                  </h1>
                 </div>
                 <div className="flex items-center text-gray-400 ">
                   <h1 className=" xs:hidden  ">@{tweet?.user?.username} </h1>
                   <h1 className="xs:hidden ">{<LuDot />}</h1>
-                  <h1 className="xs:hidden">0h</h1>
+                  <h1 className="xs:hidden">
+                    {moment(tweet?.createdAt).fromNow()}
+                  </h1>
                 </div>
                 <div>
                   <p className="text-gray-300 ">{tweet?.tweet}</p>
