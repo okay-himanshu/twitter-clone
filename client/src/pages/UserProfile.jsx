@@ -16,14 +16,19 @@ import { IoMdLogIn } from "react-icons/io";
 import { BsThreeDots } from "react-icons/bs";
 
 import { NavLink, useNavigate } from "react-router-dom";
+import moment from "moment";
 
 import { ReminderButton, SideMenu, TweetButton, UserImg } from "../components";
 import { twitter_newTweet } from "../assets/svgs";
 import { useAuth } from "../contexts/auth";
-import { useState } from "react";
 function UserProfile() {
   const { auth } = useAuth();
   const navigate = useNavigate();
+
+  const joinedDate = auth?.user?.createdAt;
+  const parsedDate = moment(joinedDate);
+  const formattedDate = parsedDate.format("MMMM YYYY");
+
   return (
     <div className="flex">
       <div className="w-0 w-500:w-28 w-600:w-24 sm:w-20 md:w-20 lg:w-20 xl:w-72  ">
@@ -94,7 +99,7 @@ function UserProfile() {
             <IoMdArrowRoundBack />
           </NavLink>
           <div className="">
-            <h1 className="font-bold">marvin</h1>
+            <h1 className="font-bold">{auth?.user?.name}</h1>
             <p className="text-xs text-gray-400">0 posts </p>
           </div>
         </nav>
@@ -113,12 +118,12 @@ function UserProfile() {
           <h1 className="font-bold text-xl">{auth?.user?.name}</h1>
           <p className="text-gray-500 text-sm">@{auth?.user?.username}</p>
           <p className="flex items-center gap-1 mt-3 text-gray-500 ">
-            <IoCalendarOutline className="text-gray-500" /> Joined September
-            2023
+            <IoCalendarOutline className="text-gray-500" /> Joined{" "}
+            {formattedDate}
           </p>
           <div className="mt-2 text-sm flex items-center gap-3">
             <h1 className="flex items-center gap-1">
-              <p>7</p> <p className="text-gray-500">following</p>
+              <p>0</p> <p className="text-gray-500">following</p>
             </h1>
             <h1 className="flex items-center gap-1">
               <p>0</p> <p className="text-gray-500">followers</p>
