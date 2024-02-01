@@ -1,9 +1,14 @@
+import {
+  twitter_analytics,
+  twitter_like,
+  twitter_reply,
+  twitter_retweet,
+  twitter_loader,
+} from "../assets/svgs/index";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { IoCalendarOutline } from "react-icons/io5";
 
-import { user_img } from "../assets/images";
-
-import { FaXTwitter } from "react-icons/fa6";
+import { FaRegBookmark, FaXTwitter } from "react-icons/fa6";
 import { GoHomeFill } from "react-icons/go";
 import { IoPeopleOutline } from "react-icons/io5";
 import { CiCircleMore, CiLogin } from "react-icons/ci";
@@ -24,8 +29,13 @@ import { twitter_newTweet } from "../assets/svgs";
 import { useAuth } from "../contexts/auth";
 import URL_CONFIG from "../config/url_config";
 import { useEffect, useState } from "react";
+import { LuDot } from "react-icons/lu";
 
 function UserProfile() {
+  const [userPost, setUserPost] = useState([]);
+  const [loader, setLoader] = useState(false);
+  const [failedToFetch, setFailedToFetch] = useState(false);
+
   const { auth } = useAuth();
   const navigate = useNavigate();
 
@@ -33,17 +43,19 @@ function UserProfile() {
   const parsedDate = moment(joinedDate);
   const formattedDate = parsedDate.format("MMMM YYYY");
 
-  const [postCount, setPostCount] = useState(0);
+  // console.log(auth.user);
 
-  console.log(auth.user);
+  console.log(userPost?.tweets?.length);
 
   const tweetCount = async () => {
     try {
       const { data } = await axios.get(
         `${URL_CONFIG.API_ENDPOINTS}/tweet/tweet-count/${auth?.user?._id}`
       );
+      console.log(data);
       if (data) {
-        setPostCount(data?.tweetCount);
+        // setUserPost(data?.tweet?.tweets);
+        setUserPost(data?.tweet);
       } else {
         console.log("something went wrong");
       }
@@ -54,6 +66,9 @@ function UserProfile() {
 
   useEffect(() => {
     tweetCount();
+    // live time counter
+    const interval = setInterval(tweetCount, 60000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -128,7 +143,7 @@ function UserProfile() {
           <div className="">
             <h1 className="font-bold">{auth?.user?.name}</h1>
             <p className="text-xs text-gray-400">
-              {postCount} {postCount > 1 ? "posts" : "post"}{" "}
+              {userPost?.tweets?.length} Posts
             </p>
           </div>
         </nav>
@@ -143,7 +158,7 @@ function UserProfile() {
             </button>
           </div>
         </section>
-        <section className="mt-14 ml-4 text-sm pb-10">
+        <section className="mt-14 ml-4 text-sm pb-5">
           <h1 className="font-bold text-xl">{auth?.user?.name}</h1>
           <p className="text-gray-500 text-sm">@{auth?.user?.username}</p>
           <p className="flex items-center gap-1 mt-3 text-gray-500 ">
@@ -159,6 +174,83 @@ function UserProfile() {
             </h1>
           </div>
         </section>
+        <hr className="brightness-[0.3] pb-3" />
+        {failedToFetch ? (
+          <section className="flex items-center justify-center mt-10">
+            <h1>⚠️ Failed To Fetch Tweets</h1>
+          </section>
+        ) : loader ? (
+          <div className="flex flex-col gap-2 items-center justify-center mt-20">
+            <img src={twitter_loader} className="w-10 " alt="loader" />
+            <h1>hold tight tweets are loading...</h1>
+          </div>
+        ) : (
+          userPost?.tweets?.map((tweet) => (
+            <main
+              key={tweet?._id}
+              className="flex justify-between  border-[0.1px] border-t-0 border-gray-800 overflow-x-auto p-2"
+            >
+              {/* left */}
+              <section className="flex  gap:10 w-11/12 md:text-base text-sm">
+                <div className="w-14 flex justify-center">
+                  <UserImg
+                    img={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${auth?.user?.username}`}
+                    alt=""
+                  />
+                </div>
+                <div className="flex flex-col justify-between w-full">
+                  <div className="flex items-center text-gray-500 ">
+                    <h1 className="font-semibold text-white ">
+                      {auth?.user?.name}
+                    </h1>
+                    <h1 className="ml-2  hidden xs:flex ">
+                      @{auth?.user?.username}{" "}
+                    </h1>
+                    <h1 className="hidden xs:flex">{<LuDot />}</h1>
+                    <h1 className="hidden xs:flex">
+                      {" "}
+                      {moment(tweet?.createdAt).fromNow()}
+                    </h1>
+                  </div>
+                  <div className="flex items-center text-gray-400 ">
+                    <h1 className=" xs:hidden  ">@{tweet?.user?.username} </h1>
+                    <h1 className="xs:hidden ">{<LuDot />}</h1>
+                    <h1 className="xs:hidden">
+                      {moment(tweet?.createdAt).fromNow()}
+                    </h1>
+                  </div>
+                  <div>
+                    <p className="text-gray-300 ">{tweet?.tweet}</p>
+                  </div>
+                  <div className="flex justify-between py-2  text-gray-400 text-sm items-center ">
+                    <section className="flex gap-1.5  cursor-pointer">
+                      <img src={twitter_reply} alt="" />
+                      <p>0</p>
+                    </section>
+                    <section className="flex gap-1.5 cursor-pointer">
+                      <img src={twitter_retweet} alt="" />
+                      <p>0</p>
+                    </section>
+                    <section className="flex gap-1.5 cursor-pointer">
+                      <img src={twitter_like} alt="" />
+                      <p>0</p>
+                    </section>
+                    <section className="flex gap-1.5 cursor-wait">
+                      <img src={twitter_analytics} alt="" />
+                      <p>0</p>
+                    </section>
+                  </div>
+                </div>
+              </section>
+
+              {/* right */}
+              <section className="flex flex-col justify-between">
+                <h1>{<BsThreeDots color="gray" />}</h1>
+                <h1 className="py-2">{<FaRegBookmark color="gray" />}</h1>
+              </section>
+            </main>
+          ))
+        )}
       </main>
     </div>
   );
