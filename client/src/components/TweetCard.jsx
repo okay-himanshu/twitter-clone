@@ -69,7 +69,7 @@ function TweetCard() {
             className="flex justify-between  border-[0.1px] border-t-0 border-gray-800 overflow-x-auto p-2"
           >
             {/* left */}
-            <section className="flex  gap:10 w-11/12">
+            <section className="flex  gap:10 w-11/12 md:text-base text-sm">
               <div className="w-14 flex justify-center">
                 <UserImg
                   img={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${tweet?.user?.username}`}

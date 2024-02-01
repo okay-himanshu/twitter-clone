@@ -47,4 +47,26 @@ const handleAllTweetLists = async (req, res) => {
   }
 };
 
-module.exports = { handleNewTweet, handleAllTweetLists };
+const handleTweetCount = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    console.log("userid", userId);
+
+    const tweetCount = await tweetModel.countDocuments({ user: userId });
+
+    console.log(tweetCount);
+    return res.status(200).send({
+      success: true,
+      message: "Tweet count retrieved successfully",
+      tweetCount: tweetCount,
+    });
+  } catch (err) {
+    return res.status(400).send({
+      success: false,
+      message: "Error while getting user tweets",
+      error: err.message,
+    });
+  }
+};
+
+module.exports = { handleNewTweet, handleAllTweetLists, handleTweetCount };

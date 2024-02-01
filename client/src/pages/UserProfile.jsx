@@ -6,7 +6,7 @@ import { user_img } from "../assets/images";
 import { FaXTwitter } from "react-icons/fa6";
 import { GoHomeFill } from "react-icons/go";
 import { IoPeopleOutline } from "react-icons/io5";
-import { CiCircleMore } from "react-icons/ci";
+import { CiCircleMore, CiLogin } from "react-icons/ci";
 import { MdOutlineEmail } from "react-icons/md";
 import { RiFileListLine } from "react-icons/ri";
 import { FiSearch } from "react-icons/fi";
@@ -15,12 +15,16 @@ import { BsPerson } from "react-icons/bs";
 import { IoMdLogIn } from "react-icons/io";
 import { BsThreeDots } from "react-icons/bs";
 
+import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 import moment from "moment";
 
 import { ReminderButton, SideMenu, TweetButton, UserImg } from "../components";
 import { twitter_newTweet } from "../assets/svgs";
 import { useAuth } from "../contexts/auth";
+import URL_CONFIG from "../config/url_config";
+import { useEffect, useState } from "react";
+
 function UserProfile() {
   const { auth } = useAuth();
   const navigate = useNavigate();
@@ -28,6 +32,29 @@ function UserProfile() {
   const joinedDate = auth?.user?.createdAt;
   const parsedDate = moment(joinedDate);
   const formattedDate = parsedDate.format("MMMM YYYY");
+
+  const [postCount, setPostCount] = useState(0);
+
+  console.log(auth.user);
+
+  const tweetCount = async () => {
+    try {
+      const { data } = await axios.get(
+        `${URL_CONFIG.API_ENDPOINTS}/tweet/tweet-count/${auth?.user?._id}`
+      );
+      if (data) {
+        setPostCount(data?.tweetCount);
+      } else {
+        console.log("something went wrong");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    tweetCount();
+  }, []);
 
   return (
     <div className="flex">
@@ -100,7 +127,9 @@ function UserProfile() {
           </NavLink>
           <div className="">
             <h1 className="font-bold">{auth?.user?.name}</h1>
-            <p className="text-xs text-gray-400">0 posts </p>
+            <p className="text-xs text-gray-400">
+              {postCount} {postCount > 1 ? "posts" : "post"}{" "}
+            </p>
           </div>
         </nav>
         <section className="bg-white h-44 w-full relative flex  justify-between">
