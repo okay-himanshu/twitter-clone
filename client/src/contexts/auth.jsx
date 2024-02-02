@@ -1,6 +1,5 @@
 import { useState, useEffect, createContext, useContext } from "react";
-import URL_CONFIG from "../config/url_config";
-
+import { navigateTo } from "../utils/navigate";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -21,8 +20,19 @@ const AuthProvider = ({ children }) => {
     }
   }, []);
 
+  // logout
+  const handleLogout = () => {
+    const ask = window.confirm("Do you really want to logout?");
+    if (!ask) return;
+    if (ask) {
+      localStorage.removeItem("auth");
+      setAuth(null);
+      navigateTo("/signup_login");
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
+    <AuthContext.Provider value={{ auth, setAuth, handleLogout }}>
       {children}
     </AuthContext.Provider>
   );

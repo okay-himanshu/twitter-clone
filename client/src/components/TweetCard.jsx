@@ -72,7 +72,7 @@ function TweetCard() {
             <section className="flex  gap:10 w-11/12 md:text-base text-sm">
               <div className="w-14 flex justify-center">
                 <UserImg
-                  img={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${tweet?.user?.username}`}
+                  img={`https://api.dicebear.com/7.x/bottts/svg?seed=${tweet?.user?.username}`}
                   alt=""
                 />
               </div>

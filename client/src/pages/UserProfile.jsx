@@ -36,7 +36,7 @@ function UserProfile() {
   const [loader, setLoader] = useState(false);
   const [failedToFetch, setFailedToFetch] = useState(false);
 
-  const { auth } = useAuth();
+  const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
 
   const joinedDate = auth?.user?.createdAt;
@@ -70,6 +70,16 @@ function UserProfile() {
     const interval = setInterval(tweetCount, 60000);
     return () => clearInterval(interval);
   }, []);
+
+  const handleLogout = () => {
+    const ask = window.confirm("Do you really want to logout?");
+    if (!ask) return;
+    if (ask) {
+      localStorage.removeItem("auth");
+      setAuth(null);
+      navigate("/");
+    }
+  };
 
   return (
     <div className="flex">
@@ -112,7 +122,7 @@ function UserProfile() {
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
                   <UserImg
-                    img={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${auth?.user?.username}`}
+                    img={`https://api.dicebear.com/7.x/bottts/svg?seed=${auth?.user?.username}`}
                   />
                   <div className="text-[15px] hidden xl:flex flex-col">
                     <h1 className="font-semibold">{auth?.user?.name}</h1>
@@ -150,11 +160,14 @@ function UserProfile() {
         <section className="bg-white h-44 w-full relative flex  justify-between">
           <div className="absolute -bottom-12  flex  justify-between w-full items-center px-2 ">
             <img
-              src={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${auth?.user?.username}`}
+              src={`https://api.dicebear.com/7.x/bottts/svg?seed=${auth?.user?.username}`}
               className="h-20 w-20 xs:h-28 xs:w-28 rounded-full  border-black border-[3px]"
             />
-            <button className="text-gray-300 border  rounded-full px-3 py-1 font-bold border-gray-500 mt-16 hover:bg-[#ffffff2f] ">
-              Edit profile
+            <button
+              onClick={handleLogout}
+              className="text-gray-300 border  rounded-full px-3 py-1 font-bold border-gray-500 mt-16 hover:bg-[#ffffff2f] "
+            >
+              Logout
             </button>
           </div>
         </section>
@@ -194,7 +207,7 @@ function UserProfile() {
               <section className="flex  gap:10 w-11/12 md:text-base text-sm">
                 <div className="w-14 flex justify-center">
                   <UserImg
-                    img={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${auth?.user?.username}`}
+                    img={`https://api.dicebear.com/7.x/bottts/svg?seed=${auth?.user?.username}`}
                     alt=""
                   />
                 </div>

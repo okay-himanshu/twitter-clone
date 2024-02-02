@@ -10,6 +10,7 @@ import NavTweets from "./NavTweets";
 import SideMenu from "./SideMenu";
 import ReminderButton from "./ReminderButton";
 import MobileViewTweetArea from "./MobileViewTweetArea";
+import Logout from "./Logout";
 
 export {
   Input,
@@ -24,4 +25,5 @@ export {
   SideMenu,
   ReminderButton,
   MobileViewTweetArea,
+  Logout,
 };

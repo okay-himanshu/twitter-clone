@@ -17,7 +17,7 @@ function TopNavbar() {
       >
         {auth?.user ? (
           <UserImg
-            img={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${auth?.user?.username}`}
+            img={`https://api.dicebear.com/7.x/bottts/svg?seed=${auth?.user?.username}`}
           />
         ) : (
           <BsPerson size={25} />

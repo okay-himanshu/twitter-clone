@@ -24,6 +24,7 @@ import {
   TweetButton,
   TweetCard,
   UserImg,
+  Logout,
 } from "../components";
 import {
   twitter_message,
@@ -86,10 +87,10 @@ function Home() {
             <div className="mt-3"></div>
             <div className="w-full p-2 hover:bg-[#ffffff1a] duration-150 cursor-pointer rounded-full">
               {auth?.user ? (
-                <div className="flex justify-between items-center">
+                <div className="relative flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <UserImg
-                      img={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${auth?.user?.username}`}
+                      img={`https://api.dicebear.com/7.x/bottts/svg?seed=${auth?.user?.username}`}
                     />
                     <div className="text-[15px] hidden xl:flex flex-col">
                       <h1 className="font-semibold">{auth?.user?.name}</h1>
@@ -108,6 +109,11 @@ function Home() {
                 />
               )}
             </div>
+            {auth?.token && (
+              <div className="w-full mt-2">
+                <Logout />
+              </div>
+            )}
           </section>
 
           <section className="w-500:hidden flex items-center justify-around fixed bottom-0 w-full border-t bg-black border-gray-600 p-4">
