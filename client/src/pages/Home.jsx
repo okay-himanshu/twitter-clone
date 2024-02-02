@@ -42,6 +42,7 @@ function Home() {
   const handleOpenTweetModal = () => setTweetModal(true);
 
   console.log(auth);
+  console.log(tweetModal);
   return (
     <>
       <section className="flex ">
@@ -129,7 +130,7 @@ function Home() {
             <TweetArea />
           </section>
 
-          <section className="">
+          <section className={`${tweetModal ? "hidden" : "visible"}`}>
             <TweetCard />
           </section>
         </div>

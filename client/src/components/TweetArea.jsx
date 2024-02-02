@@ -36,7 +36,7 @@ function TweetArea() {
             onChange={(event) => setNewTweet(event.target.value)}
             value={newTweet}
             placeholder="What is happening?!"
-            className="border border-r-0 border-l-0 border-t-0 border-gray-800  w-full h-16 bg-black outline-none resize-none  font-light text-lg "
+            className="border border-r-0 border-l-0 border-t-0 border-gray-800  w-full focus:h-32 focus:transition-all delay-150 duration-200 bg-black outline-none resize-none  font-light text-base md:text-lg "
           ></textarea>
 
           <div className="flex items-center justify-between mt-4 mb-4">

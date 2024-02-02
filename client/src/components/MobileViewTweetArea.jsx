@@ -31,6 +31,7 @@ function MobileViewTweetArea({ status, setStatus }) {
           size={22}
           color="gray"
           onClick={handleCloseTweetModal}
+          className="cursor-pointer"
         />
         <button className="bg-[#1D9BF0] rounded-full px-3 py-1">Post</button>
       </nav>
