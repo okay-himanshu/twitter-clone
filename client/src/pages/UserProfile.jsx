@@ -81,6 +81,22 @@ function UserProfile() {
     }
   };
 
+  const renderTweetText = (tweet) => {
+    const words = tweet.tweet.split(" ");
+    const tweetContent = words.map((word, index) => {
+      if (word.startsWith("#")) {
+        return (
+          <span key={index} className="text-[#1da1f2]">
+            {word}{" "}
+          </span>
+        );
+      } else {
+        return <span key={index}>{word} </span>;
+      }
+    });
+    return tweetContent;
+  };
+
   return (
     <div className="flex">
       <div className="w-0 w-500:w-28 w-600:w-24 sm:w-20 md:w-20 lg:w-20 xl:w-72  ">
@@ -233,7 +249,7 @@ function UserProfile() {
                     </h1>
                   </div>
                   <div>
-                    <p className="text-gray-300 ">{tweet?.tweet}</p>
+                    <p className="text-gray-300 ">{renderTweetText(tweet)}</p>
                   </div>
                   <div className="flex justify-between py-2  text-gray-400 text-sm items-center ">
                     <section className="flex gap-1.5  cursor-pointer">
