@@ -46,10 +46,27 @@ function TweetCard() {
 
   useEffect(() => {
     fetchAllTweetLists();
+    // console.log(allTweets[0].tweet);
     // live time counter
     const interval = setInterval(fetchAllTweetLists, 60000);
     return () => clearInterval(interval);
   }, []);
+
+  const renderTweetText = (tweet) => {
+    const words = tweet.tweet.split(" ");
+    const tweetContent = words.map((word, index) => {
+      if (word.startsWith("#")) {
+        return (
+          <span key={index} className="text-[#1da1f2]">
+            {word}{" "}
+          </span>
+        );
+      } else {
+        return <span key={index}>{word} </span>;
+      }
+    });
+    return tweetContent;
+  };
 
   return (
     <>
@@ -63,71 +80,73 @@ function TweetCard() {
           <h1>hold tight tweets are loading...</h1>
         </div>
       ) : (
-        allTweets?.map((tweet) => (
-          <main
-            key={tweet?._id}
-            className="flex justify-between  border-[0.1px] border-t-0 border-gray-800 overflow-x-auto p-2"
-          >
-            {/* left */}
-            <section className="flex  gap:10 w-11/12 md:text-base text-sm">
-              <div className="w-14 flex justify-center">
-                <UserImg
-                  img={`https://api.dicebear.com/7.x/bottts/svg?seed=${tweet?.user?.username}`}
-                  alt=""
-                />
-              </div>
-              <div className="flex flex-col justify-between w-full">
-                <div className="flex items-center text-gray-500 ">
-                  <h1 className="font-semibold text-white ">
-                    {tweet?.user?.name}
-                  </h1>
-                  <h1 className="ml-2  hidden xs:flex ">
-                    @{tweet?.user?.username}{" "}
-                  </h1>
-                  <h1 className="hidden xs:flex">{<LuDot />}</h1>
-                  <h1 className="hidden xs:flex">
-                    {" "}
-                    {moment(tweet?.createdAt).fromNow()}
-                  </h1>
+        allTweets?.map((tweet) => {
+          return (
+            <main
+              key={tweet?._id}
+              className="flex justify-between  border-[0.1px] border-t-0 border-gray-800 overflow-x-auto p-2"
+            >
+              {/* left */}
+              <section className="flex  gap:10 w-11/12 md:text-[15px] text-sm">
+                <div className="w-14 flex justify-center">
+                  <UserImg
+                    img={`https://api.dicebear.com/7.x/bottts/svg?seed=${tweet?.user?.username}`}
+                    alt=""
+                  />
                 </div>
-                <div className="flex items-center text-gray-400 ">
-                  <h1 className=" xs:hidden  ">@{tweet?.user?.username} </h1>
-                  <h1 className="xs:hidden ">{<LuDot />}</h1>
-                  <h1 className="xs:hidden">
-                    {moment(tweet?.createdAt).fromNow()}
-                  </h1>
+                <div className="flex flex-col justify-between w-full">
+                  <div className="flex items-center text-gray-500 ">
+                    <h1 className="font-semibold text-white ">
+                      {tweet?.user?.name}
+                    </h1>
+                    <h1 className="ml-2  hidden xs:flex ">
+                      @{tweet?.user?.username}{" "}
+                    </h1>
+                    <h1 className="hidden xs:flex">{<LuDot />}</h1>
+                    <h1 className="hidden xs:flex">
+                      {" "}
+                      {moment(tweet?.createdAt).fromNow()}
+                    </h1>
+                  </div>
+                  <div className="flex items-center text-gray-400 ">
+                    <h1 className=" xs:hidden  ">@{tweet?.user?.username} </h1>
+                    <h1 className="xs:hidden ">{<LuDot />}</h1>
+                    <h1 className="xs:hidden">
+                      {moment(tweet?.createdAt).fromNow()}
+                    </h1>
+                  </div>
+                  <div>
+                    <p className="text-gray-300 ">{renderTweetText(tweet)}</p>
+                  </div>
+                  <div className="flex justify-between py-2  text-gray-400 text-sm items-center ">
+                    <section className="flex gap-1.5  cursor-pointer">
+                      <img src={twitter_reply} alt="" />
+                      <p>0</p>
+                    </section>
+                    <section className="flex gap-1.5 cursor-pointer">
+                      <img src={twitter_retweet} alt="" />
+                      <p>0</p>
+                    </section>
+                    <section className="flex gap-1.5 cursor-pointer">
+                      <img src={twitter_like} alt="" />
+                      <p>0</p>
+                    </section>
+                    <section className="flex gap-1.5 cursor-wait">
+                      <img src={twitter_analytics} alt="" />
+                      <p>0</p>
+                    </section>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-gray-300 ">{tweet?.tweet}</p>
-                </div>
-                <div className="flex justify-between py-2  text-gray-400 text-sm items-center ">
-                  <section className="flex gap-1.5  cursor-pointer">
-                    <img src={twitter_reply} alt="" />
-                    <p>0</p>
-                  </section>
-                  <section className="flex gap-1.5 cursor-pointer">
-                    <img src={twitter_retweet} alt="" />
-                    <p>0</p>
-                  </section>
-                  <section className="flex gap-1.5 cursor-pointer">
-                    <img src={twitter_like} alt="" />
-                    <p>0</p>
-                  </section>
-                  <section className="flex gap-1.5 cursor-wait">
-                    <img src={twitter_analytics} alt="" />
-                    <p>0</p>
-                  </section>
-                </div>
-              </div>
-            </section>
+              </section>
 
-            {/* right */}
-            <section className="flex flex-col justify-between">
-              <h1>{<BsThreeDots color="gray" />}</h1>
-              <h1 className="py-2">{<FaRegBookmark color="gray" />}</h1>
-            </section>
-          </main>
-        ))
+              {/* right */}
+              <section className="flex flex-col justify-between">
+                <h1>{<BsThreeDots color="gray" />}</h1>
+                <h1 className="py-2">{<FaRegBookmark color="gray" />}</h1>
+              </section>
+            </main>
+          );
+        })
       )}
     </>
   );
