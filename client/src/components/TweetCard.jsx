@@ -36,25 +36,22 @@ function TweetCard() {
         setAllTweets(data?.allTweets);
         setLoader(false);
       } else {
-        console.log(data.message);
         setLoader(true);
         setFailedToFetch(true);
       }
     } catch (err) {
-      console.log(err.message);
+      console.error(err.message);
       setFailedToFetch(true);
     }
   };
 
   useEffect(() => {
     fetchAllTweetLists();
-    // console.log(allTweets[0].tweet);
     // live time counter
     const interval = setInterval(fetchAllTweetLists, 60000);
     return () => clearInterval(interval);
   }, [likedTweets]);
 
-  // Load liked tweet IDs from local storage when the component mounts
   useEffect(() => {
     const likedTweetsFromStorage = localStorage.getItem("likedTweets");
     if (likedTweetsFromStorage) {
@@ -64,7 +61,6 @@ function TweetCard() {
 
   const handleLike = async (tweetId) => {
     try {
-      // Send a request to like the tweet to your backend
       const response = await axios.post(
         `${URL_CONFIG.API_ENDPOINTS}/tweet/like/${tweetId}`,
         {},
@@ -72,7 +68,6 @@ function TweetCard() {
           headers: { Authorization: `Bearer ${auth?.token}` },
         }
       );
-      // Update the likedTweets state and local storage
       if (response.data.success) {
         const updatedLikedTweets = likedTweets.includes(tweetId)
           ? likedTweets.filter((id) => id !== tweetId)
@@ -114,7 +109,6 @@ function TweetCard() {
         </div>
       ) : (
         allTweets?.map((tweet) => {
-          console.log(tweet);
           return (
             <main
               key={tweet?._id}

@@ -48,8 +48,6 @@ const handleUserSingUp = async (req, res) => {
             }
           );
 
-          console.log("backend ", user);
-
           return res.status(201).send({
             success: true,
             message: "user signup successfully",

@@ -29,12 +29,12 @@ const GlobalProvider = ({ children }) => {
         toast.success("tweet successfully");
         setNewTweet("");
       } else if (!data.success) {
-        console.log("something went wrong", data.message);
+        console.error("something went wrong", data.message);
       } else {
         toast.error("something went wrong");
       }
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
     }
   };
 

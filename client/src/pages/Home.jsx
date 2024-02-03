@@ -42,8 +42,6 @@ function Home() {
 
   const handleOpenTweetModal = () => setTweetModal(true);
 
-  console.log(auth);
-  console.log(tweetModal);
   return (
     <>
       <section className="flex ">

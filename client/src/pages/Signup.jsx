@@ -40,10 +40,10 @@ function Signup() {
         localStorage.setItem("auth", JSON.stringify(res.data));
         navigate("/");
       } else {
-        console.log(res.message);
+        console.error(res.message);
       }
     } catch (err) {
-      console.log(err.message);
+      console.error(err.message);
     }
   };
 

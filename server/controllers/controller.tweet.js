@@ -50,10 +50,8 @@ const handleAllTweetLists = async (req, res) => {
 const handleUserTweet = async (req, res) => {
   try {
     const userId = req.params.userId;
-    console.log("userid", userId);
 
     const userTweet = await tweetModel.find({ user: userId });
-    console.log("usertweet", userTweet);
 
     return res.status(200).send({
       success: true,

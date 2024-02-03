@@ -17,7 +17,7 @@ const userAuthentication = async (req, res, next) => {
       });
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.json({
       status: false,
       message: "Unauthorized token",

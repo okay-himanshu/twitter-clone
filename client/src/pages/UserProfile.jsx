@@ -43,24 +43,18 @@ function UserProfile() {
   const parsedDate = moment(joinedDate);
   const formattedDate = parsedDate.format("MMMM YYYY");
 
-  // console.log(auth.user);
-
-  console.log(userPost?.tweets?.length);
-
   const tweetCount = async () => {
     try {
       const { data } = await axios.get(
         `${URL_CONFIG.API_ENDPOINTS}/tweet/tweet-count/${auth?.user?._id}`
       );
-      console.log(data);
       if (data) {
-        // setUserPost(data?.tweet?.tweets);
         setUserPost(data?.tweet);
       } else {
-        console.log("something went wrong");
+        console.error("something went wrong");
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

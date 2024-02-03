@@ -17,5 +17,5 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/tweet", tweetRouter);
 
 app.listen(PORT, () =>
-  console.log(`Server is running at port http://localhost:${PORT}`)
+  console.info(`Server is running at port http://localhost:${PORT}`)
 );
