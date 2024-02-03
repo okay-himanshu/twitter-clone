@@ -26,6 +26,7 @@ const AuthProvider = ({ children }) => {
     if (!ask) return;
     if (ask) {
       localStorage.removeItem("auth");
+      localStorage.removeItem("likedTweets");
       setAuth(null);
       navigateTo("/signup_login");
     }

@@ -4,13 +4,19 @@ const tweetSchema = new mongoose.Schema(
   {
     tweet: {
       type: String,
-      require: true,
+      required: true,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
+    likes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   {
     timestamps: true,

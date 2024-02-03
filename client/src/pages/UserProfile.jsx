@@ -76,6 +76,7 @@ function UserProfile() {
     if (!ask) return;
     if (ask) {
       localStorage.removeItem("auth");
+      localStorage.removeItem("likedTweets");
       setAuth(null);
       navigate("/");
     }

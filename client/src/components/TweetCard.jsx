@@ -16,6 +16,7 @@ import {
   twitter_reply,
   twitter_retweet,
   twitter_loader,
+  twitter_like_red,
 } from "../assets/svgs/index";
 import UserImg from "./UserImg";
 
@@ -23,6 +24,7 @@ function TweetCard() {
   const [allTweets, setAllTweets] = useState([]);
   const [loader, setLoader] = useState(true);
   const [failedToFetch, setFailedToFetch] = useState(false);
+  const [likedTweets, setLikedTweets] = useState([]);
   const { auth } = useAuth();
 
   const fetchAllTweetLists = async () => {
@@ -50,7 +52,38 @@ function TweetCard() {
     // live time counter
     const interval = setInterval(fetchAllTweetLists, 60000);
     return () => clearInterval(interval);
+  }, [likedTweets]);
+
+  // Load liked tweet IDs from local storage when the component mounts
+  useEffect(() => {
+    const likedTweetsFromStorage = localStorage.getItem("likedTweets");
+    if (likedTweetsFromStorage) {
+      setLikedTweets(JSON.parse(likedTweetsFromStorage));
+    }
   }, []);
+
+  const handleLike = async (tweetId) => {
+    try {
+      // Send a request to like the tweet to your backend
+      const response = await axios.post(
+        `${URL_CONFIG.API_ENDPOINTS}/tweet/like/${tweetId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${auth?.token}` },
+        }
+      );
+      // Update the likedTweets state and local storage
+      if (response.data.success) {
+        const updatedLikedTweets = likedTweets.includes(tweetId)
+          ? likedTweets.filter((id) => id !== tweetId)
+          : [...likedTweets, tweetId];
+        setLikedTweets(updatedLikedTweets);
+        localStorage.setItem("likedTweets", JSON.stringify(updatedLikedTweets));
+      }
+    } catch (error) {
+      console.error("Error while liking tweet:", error);
+    }
+  };
 
   const renderTweetText = (tweet) => {
     const words = tweet.tweet.split(" ");
@@ -81,6 +114,7 @@ function TweetCard() {
         </div>
       ) : (
         allTweets?.map((tweet) => {
+          console.log(tweet);
           return (
             <main
               key={tweet?._id}
@@ -127,9 +161,23 @@ function TweetCard() {
                       <img src={twitter_retweet} alt="" />
                       <p>0</p>
                     </section>
-                    <section className="flex gap-1.5 cursor-pointer">
-                      <img src={twitter_like} alt="" />
-                      <p>0</p>
+                    <section
+                      className="flex gap-1.5 cursor-pointer"
+                      onClick={() =>
+                        !auth?.token
+                          ? alert("Please login to like a tweet")
+                          : handleLike(tweet._id)
+                      }
+                    >
+                      <img
+                        src={
+                          likedTweets.includes(tweet._id)
+                            ? twitter_like_red
+                            : twitter_like
+                        }
+                        alt=""
+                      />
+                      <p>{tweet?.likes?.length}</p>
                     </section>
                     <section className="flex gap-1.5 cursor-wait">
                       <img src={twitter_analytics} alt="" />
